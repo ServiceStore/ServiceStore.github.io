@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Store Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="style.css">
+<style>
+body{padding-bottom:110px}
+.wrap{width:min(900px,94%);margin:0 auto}
+.top{display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:18px}
+.top img{width:44px;height:44px;clip-path:circle(48%)}
+.top h1{font-size:1.15rem;flex:1}
+.mode{font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:999px;background:#3a2a00;color:#ffd77a}
+.mode.live{background:#0d3b22;color:var(--green-2)}
+.panel{background:var(--panel);border:1px solid var(--line-2);border-radius:18px;padding:18px;margin-bottom:14px}
+.login{max-width:420px;margin:40px auto;text-align:center}
+.login h2{margin-bottom:6px}.login p{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+input,select,textarea{width:100%;background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;color:var(--text);font:inherit;padding:10px 12px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--green)}
+textarea{resize:vertical;min-height:60px}
+input[dir=rtl],textarea[dir=rtl]{font-family:"Noto Kufi Arabic",sans-serif}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tabs button{flex:1;padding:12px;border-radius:12px;background:var(--panel);border:1px solid var(--line-2);font-weight:700}
+.tabs button.on{border-color:var(--green);color:var(--green-2)}
+.bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}.bar select{flex:1;min-width:150px}
+.item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;background:var(--bg-2);border:1px solid var(--line);margin-bottom:8px}
+.thumb{width:56px;height:56px;border-radius:10px;flex-shrink:0;background:#222 center/cover no-repeat;display:grid;place-items:center;font-size:.6rem;color:#aaa;text-align:center}
+.item .info{flex:1;min-width:0}.item b{display:block;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item span{font-size:.78rem;color:var(--muted)}
+.swatch{width:22px;height:22px;border-radius:6px;display:inline-block;vertical-align:middle}
+.small{padding:8px 14px;font-size:.85rem}
+.danger{background:#5a1820!important;color:#ffb3bb}.danger.armed{background:#d6303f!important;color:#fff}
+.editor{position:fixed;inset:0;z-index:80;background:var(--bg);overflow:auto;padding:16px 0 120px;display:none}
+.editor.open{display:block}
+.editor h2{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:1.2rem}
+.f{margin-bottom:14px}.f > label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px;font-weight:600}
+.tri{display:grid;gap:6px}.tri input,.tri textarea{font-size:.9rem}
+.lang-tag{font-size:.65rem;color:var(--muted)}
+.pic{display:flex;gap:14px;align-items:center}.pic .thumb{width:110px;height:110px;border-radius:16px}
+.opt-row{display:grid;grid-template-columns:1fr 1fr 1fr 110px 40px;gap:6px;margin-bottom:6px}
+.opt-row button{background:#5a1820;border-radius:10px;color:#ffb3bb;font-weight:800}
+@media(max-width:620px){.opt-row{grid-template-columns:1fr 46px;padding:10px;border:1px solid var(--line-2);border-radius:14px}.opt-row input{grid-column:1}.opt-row button{grid-column:2;grid-row:1/5}}
+.check{display:flex;align-items:center;gap:10px}.check input{width:22px;height:22px}
+.save-bar{position:fixed;left:0;right:0;bottom:0;z-index:90;background:rgba(9,9,11,.95);border-top:1px solid var(--line-2);padding:12px 0}
+.save-bar .wrap{display:flex;gap:10px;align-items:center}
+.save-bar .status{flex:1;font-size:.85rem;color:var(--muted)}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+.msg{margin-top:10px;font-size:.9rem;color:#ffb3bb;min-height:1em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <img src="logo.jpg" alt="">
+    <h1>Store Manager · بەڕێوەبردنی فرۆشگا</h1>
+    <span class="mode" id="mode"></span>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="login" class="panel login">
+    <h2>Owner login</h2>
+    <p id="login-text"></p>
+    <div id="login-demo" hidden>
+      <input type="email" id="dem" placeholder="Owner email" autocomplete="username">
+      <input type="password" id="pass" placeholder="Password" autocomplete="current-password" style="margin-top:8px">
+      <button class="btn block" id="pass-btn" style="margin-top:10px">Open</button>
+    </div>
+    <div id="login-live" hidden>
+      <input type="email" id="em" placeholder="Owner email" autocomplete="username">
+      <input type="password" id="pw" placeholder="Password" autocomplete="current-password" style="margin-top:8px">
+      <button class="btn block" id="pw-btn" style="margin-top:10px">Log in</button>
+    </div>
+    <p class="msg" id="login-msg"></p>
+  </div>
+
+  <!-- MAIN -->
+  <div id="main" hidden>
+    <div class="tabs"><button data-tab="products" class="on">Products · بەرهەمەکان</button><button data-tab="sections">Sections · بەشەکان</button></div>
+    <div id="tab-products">
+      <div class="bar"><select id="filter"></select><button class="btn small" id="add-product">+ Add product</button></div>
+      <div id="plist"></div>
+    </div>
+    <div id="tab-sections" hidden>
+      <div class="bar"><button class="btn small" id="add-section">+ Add section</button></div>
+      <div id="slist"></div>
+    </div>
+    <div class="panel" style="margin-top:20px">
+      <b>Back to the original store</b>
+      <p class="hint">Removes every change made here and goes back to data.js.</p>
+      <button class="btn small danger" id="reset" style="margin-top:10px">Reset to original</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT EDITOR -->
+<div class="editor" id="ped"><div class="wrap">
+  <h2><span id="ped-title">Product</span><button class="btn small ghost" data-done>Done</button></h2>
+  <div class="f"><label>Picture</label>
+    <div class="pic"><div class="thumb" id="p-thumb"></div>
+      <div style="display:grid;gap:8px"><label class="btn small" style="cursor:pointer">Choose picture<input type="file" id="p-file" accept="image/*" hidden></label>
+      <button class="btn small ghost" id="p-nopic">Remove picture</button></div></div>
+    <p class="hint">Any size. It is cropped to a square automatically.</p></div>
+  <div class="f"><label>Section</label><select id="p-cat"></select></div>
+  <div class="f"><label>Name</label><div class="tri" id="p-name"></div></div>
+  <div class="f"><label>Badge on the picture (e.g. XBOX, AI)</label><input id="p-platform"></div>
+  <div class="f"><label>Gold tag (optional, e.g. 4K پریمیەم)</label><div class="tri" id="p-note"></div></div>
+  <div class="f"><label>Information text</label><div class="tri" id="p-desc"></div></div>
+  <div class="f"><label>Options and prices (IQD)</label>
+    <div id="p-opts"></div><button class="btn small ghost" id="p-addopt">+ Add option</button>
+    <p class="hint">Each row: Kurdish · English · Arabic name, then price. Example: ١ مانگ · 1 Month · شهر واحد · 5000</p></div>
+  <div class="f check"><input type="checkbox" id="p-hero"><label for="p-hero" style="margin:0">Show in the big top slider</label></div>
+  <button class="btn danger" id="p-del">Delete this product</button>
+</div></div>
+
+<!-- SECTION EDITOR -->
+<div class="editor" id="sed"><div class="wrap">
+  <h2><span>Section</span><button class="btn small ghost" data-done>Done</button></h2>
+  <div class="f"><label>Name</label><div class="tri" id="s-name"></div></div>
+  <div class="f"><label>Short description</label><div class="tri" id="s-tag"></div></div>
+  <div class="f"><label>Colour</label><input type="color" id="s-color" style="height:48px;padding:4px"></div>
+  <div class="f"><label>Icon</label><select id="s-icon"></select></div>
+  <button class="btn danger" id="s-del">Delete this section</button>
+  <p class="hint" id="s-del-hint"></p>
+</div></div>
+
+<div class="save-bar" id="savebar" hidden><div class="wrap">
+  <span class="status" id="status">No changes</span>
+  <a class="btn small ghost" href="index.html">Open store</a>
+  <button class="btn" id="save" disabled>Save</button>
+</div></div>
+
+<script src="data.js"></script>
+<script src="reviews.js"></script>
+<script src="catalog.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

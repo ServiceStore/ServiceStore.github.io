@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Store Reviews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- fonts load in the background so the page never waits for them -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="rv-page">
+<div class="bg-fx"></div>
+
+<div class="demo-bar" id="demo-bar" hidden>
+  DEMO MODE: reviews are saved only in this browser. Connect Firebase (see SETUP-REVIEWS.md) to make them public.
+</div>
+
+<header>
+  <div class="container">
+    <div class="head">
+      <a href="index.html" class="brand">
+        <img src="logo.jpg" alt="Service Store">
+        <div><b>SERVICE <span class="gm">STORE</span></b><small data-t="tagline"></small></div>
+      </a>
+      <div class="head-actions" style="margin-inline-start:auto">
+        <div class="lang">
+          <button data-lang="ckb">کوردی</button>
+          <button data-lang="ar">عربي</button>
+          <button data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container rv-main">
+  <a href="index.html" class="see-all rv-back"><span class="rv-back-ic" data-icon="chevron"></span><span data-t="rv_back"></span></a>
+
+  <!-- Summary -->
+  <section class="rv-card rv-head">
+    <div class="rv-score">
+      <div class="rv-big" id="rv-avg">–</div>
+      <div class="rv-stars-row" id="rv-stars"></div>
+      <div class="rv-based" id="rv-based"></div>
+    </div>
+    <div class="rv-bars" id="rv-bars"></div>
+    <div class="rv-cta">
+      <h1><span data-icon="shield"></span><span>Service Store <span class="gm">Reviews</span></span></h1>
+      <button class="btn" id="rv-write-btn"><span data-icon="star"></span><span data-t="rv_write"></span></button>
+    </div>
+  </section>
+
+  <!-- Write a review -->
+  <section class="rv-card rv-write" id="rv-write" hidden>
+    <!-- Not signed in -->
+    <div id="rv-signin">
+      <h2 data-t="rv_signin_t"></h2>
+      <p class="rv-note" data-t="rv_signin_d"></p>
+      <button class="btn white block" id="rv-google"><b class="g-ic">G</b><span data-t="rv_google"></span></button>
+      <div class="rv-or"><span data-t="rv_or"></span></div>
+      <form id="rv-email-form" class="rv-email">
+        <input type="email" id="rv-email" required data-ph="rv_email_ph" autocomplete="email">
+        <button class="btn" type="submit" data-t="rv_email_btn"></button>
+      </form>
+      <p class="rv-msg" id="rv-signin-msg"></p>
+    </div>
+
+    <!-- Signed in -->
+    <form id="rv-form" hidden>
+      <div class="rv-user"><span><span data-t="rv_signed_as"></span> <b class="ltr" id="rv-user-email"></b></span>
+        <button type="button" class="see-all" id="rv-signout" data-t="rv_signout"></button></div>
+      <label class="label" data-t="rv_your_rating"></label>
+      <div class="rv-pick" id="rv-pick"></div>
+      <label class="label" for="rv-name" data-t="rv_name"></label>
+      <input class="rv-input" id="rv-name" maxlength="40" required>
+      <textarea class="rv-input" id="rv-text" maxlength="1000" rows="4" data-ph="rv_text_ph"></textarea>
+      <p class="rv-note" data-t="rv_one_per"></p>
+      <button class="btn block" type="submit" data-t="rv_submit"></button>
+      <p class="rv-msg" id="rv-form-msg"></p>
+    </form>
+  </section>
+
+  <!-- List -->
+  <section class="rv-list-wrap">
+    <div class="sec-head">
+      <h2><span class="bar"></span><span data-t="rv_all"></span></h2>
+      <select class="select" id="rv-sort">
+        <option value="new" data-t="rv_sort_new"></option>
+        <option value="high" data-t="rv_sort_high"></option>
+        <option value="low" data-t="rv_sort_low"></option>
+      </select>
+    </div>
+    <div class="rv-list" id="rv-list"></div>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="reviews.js"></script>
+<script src="reviews-page.js"></script>
+</body>
+</html>
