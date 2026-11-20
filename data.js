@@ -323,6 +323,11 @@ const PRODUCTS = [
 /* ---------- 4) TEXT (every sentence in 3 languages) ---------- */
 const TEXT = {
   en:{
+    about_us:"About us",
+    about_text:"Service Store is a digital store in Kurdistan for game subscriptions, gift cards, movie & anime services and AI tools. We deliver quickly and help every customer personally.",
+    about_p1:"Fast delivery, usually within minutes",
+    about_p2:"Original codes and accounts only",
+    about_p3:"Local payment: FIB, FastPay, Zain Cash",
     fs_title:"Fortnite Item Shop", fs_sub:"Today's real shop, gifted to your account. Updates automatically every day.",
     fs_reset:"New shop in", fs_leaves:"Leaves in {t}", fs_loading:"Loading today's shop…",
     fs_error:"Couldn't load the Fortnite shop right now.", fs_retry:"Try again", fs_count:"{n} items",
@@ -373,6 +378,11 @@ const TEXT = {
     contact_btn:"Contact us",
   },
   ckb:{
+    about_us:"دەربارەی ئێمە",
+    about_text:"سێرڤس ستۆر فرۆشگایەکی دیجیتاڵییە لە کوردستان بۆ خزمەتگوزاری یاری، کارتی دیاری، فیلم و ئەنیمی و ئامرازەکانی زیرەکی دەستکرد. بە خێرایی دەگەیەنین و یارمەتی هەموو کڕیارێک دەدەین.",
+    about_p1:"گەیاندنی خێرا، زۆربەی کات لە چەند خولەکێکدا",
+    about_p2:"تەنها کۆد و ئەکاونتی ئەسڵی",
+    about_p3:"پارەدانی ناوخۆیی: FIB، FastPay، Zain Cash",
     fs_title:"ئایتم شۆپی فۆرتنایت", fs_sub:"شۆپی ڕاستەقینەی ئەمڕۆ، وەک دیاری بۆ ئەکاونتەکەت. ڕۆژانە خۆکارانە نوێ دەبێتەوە.",
     fs_reset:"شۆپی نوێ دوای", fs_leaves:"دەڕوات دوای {t}", fs_loading:"شۆپی ئەمڕۆ بار دەکرێت…",
     fs_error:"ئێستا نەتوانرا شۆپی فۆرتنایت بار بکرێت.", fs_retry:"دووبارە هەوڵ بدەرەوە", fs_count:"{n} ئایتم",
@@ -423,6 +433,11 @@ const TEXT = {
     contact_btn:"پەیوەندیمان پێوە بکە",
   },
   ar:{
+    about_us:"من نحن",
+    about_text:"سيرفس ستور متجر رقمي في كوردستان لاشتراكات الألعاب وبطاقات الهدايا وخدمات الأفلام والأنمي وأدوات الذكاء الاصطناعي. نوصل بسرعة ونساعد كل عميل بنفسه.",
+    about_p1:"تسليم سريع، عادةً خلال دقائق",
+    about_p2:"أكواد وحسابات أصلية فقط",
+    about_p3:"دفع محلي: FIB وFastPay وزين كاش",
     fs_title:"متجر عناصر فورتنايت", fs_sub:"متجر اليوم الحقيقي، يُرسل هدية إلى حسابك. يتحدّث تلقائياً كل يوم.",
     fs_reset:"متجر جديد بعد", fs_leaves:"يغادر بعد {t}", fs_loading:"جارٍ تحميل متجر اليوم…",
     fs_error:"تعذّر تحميل متجر فورتنايت الآن.", fs_retry:"حاول مجدداً", fs_count:"{n} عنصر",

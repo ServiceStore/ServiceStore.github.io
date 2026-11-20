@@ -910,3 +910,15 @@ html[lang="ar"]  :is(.m-plat,.pref > span,.ch-count,.demo-bar,.kicker,.badge,.sp
   font-family:"Noto Kufi Arabic","Rubik",sans-serif;letter-spacing:0}
 .modal .desc{white-space:pre-line}
 .modal .art-img img{object-position:center}
+
+/* About us */
+.about-btn{gap:10px}
+.about-modal{width:min(520px,94vw)}
+.about-inner{padding:30px 24px 26px;text-align:center}
+.about-logo{width:96px;height:96px;margin:0 auto 14px;clip-path:circle(48%)}
+.about-inner h3{font-size:1.4rem;margin-bottom:10px}
+.about-inner > p{color:var(--muted);line-height:1.8}
+.about-list{list-style:none;display:grid;gap:10px;margin-top:20px;text-align:start}
+.about-list li{display:flex;align-items:center;gap:12px;background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.92rem}
+.about-list svg{color:var(--green-2);flex-shrink:0}
+@media (max-width:720px){ .about-modal{width:100%} }
